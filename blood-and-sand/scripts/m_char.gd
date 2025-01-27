@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 @export var speed = 400
+@export var layer: String
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var l_r_attack: Area2D = $"l_r attack"
 
 var attacking: bool
 var attack: String
 
 func _ready() -> void:
+	layer = "ground"
 	attacking = false
 	Global.player = self
 
@@ -43,10 +44,8 @@ func animation(dir):
 func toggle_flip(dir):
 	if dir == 1:
 		sprite.flip_h = false
-		l_r_attack.scale.x = 1
 	if dir == -1:
 		sprite.flip_h = true
-		l_r_attack.scale.x = -1
 
 @warning_ignore("shadowed_variable")
 func handle_attack_anim(attack, dir):

@@ -7,9 +7,10 @@ extends CharacterBody2D
 var dir: Vector2
 var player: CharacterBody2D
 
-#func _process(delta: float) -> void:
-	#move()
-	#animation(dir.x)
+func _process(_delta: float) -> void:
+	if chase:
+		move()
+		animation(dir.x)
 
 func move():
 	if chase:
@@ -29,15 +30,15 @@ func choose(array):
 	array.shuffle()
 	return array.front()
 
-func animation(dir):
+func animation(direction):
 	if !velocity:
 		sprite.play("idle")
 	if velocity:
 		sprite.play("run")
-		toggle_flip(dir)
+		toggle_flip(direction)
 
-func toggle_flip(dir):
-	if dir == 1:
+func toggle_flip(direction):
+	if direction == 1:
 		sprite.flip_h = false
-	if dir == -1:
+	if direction == -1:
 		sprite.flip_h = true

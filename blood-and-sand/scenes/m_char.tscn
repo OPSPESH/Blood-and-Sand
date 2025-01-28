@@ -310,7 +310,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -333,7 +333,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_down",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -356,7 +356,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_up",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -386,13 +386,17 @@ animations = [{
 size = Vector2(78, 32)
 
 [node name="m_char" type="CharacterBody2D"]
+z_index = 2
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_hsjyk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"idle"
+animation = &"light_up"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(6, 19)

@@ -1,34 +1,44 @@
 extends CharacterBody2D
 
 @export var speed = 100
-@export var chase: bool = true
+@export var chase: int = 0 #0 = none, 1 = dumb, 2 = smart
+@export var up: bool = true
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 
 var dir: Vector2
 var player: CharacterBody2D
 
+func _ready() -> void:
+	toggle_layer()
+
 func _process(_delta: float) -> void:
-	if chase:
+	if chase != 0:
 		move()
 		animation(dir.x)
 
 func move():
-	if chase:
-		player = Global.player
-		velocity = position.direction_to(player.position) * speed
-		dir.x = abs(velocity.x) / velocity.x
-	if !chase:
-		velocity = dir * speed
+	player = Global.player
+	if chase == 1:
+		if position.distance_to(player.position) > 50:
+			velocity = position.direction_to(player.position) * speed
+			dir.x = abs(velocity.x) / velocity.x
+		else:
+			velocity = Vector2(0,0)
+	elif chase == 2:
+		if position.distance_to(player.position) > 50:
+			var dir = to_local(nav_agent.get_next_path_position()).normalized()
+			velocity = dir * speed
+		else:
+			velocity = Vector2(0,0)
 	move_and_slide()
 
+func makepath():
+	player = Global.player
+	nav_agent.target_position = player.global_position
+
 func _on_timer_timeout() -> void:
-	$Timer.wait_time = choose([1.0, 1.5, 2.0])
-	if !chase:
-		dir = choose([Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2. RIGHT])
-		
-func choose(array):
-	array.shuffle()
-	return array.front()
+	makepath()
 
 func animation(direction):
 	if !velocity:
@@ -42,3 +52,24 @@ func toggle_flip(direction):
 		sprite.flip_h = false
 	if direction == -1:
 		sprite.flip_h = true
+
+func toggle_layer():
+	print(up)
+	if up == false:
+		self.collision_layer = 4
+		self.collision_mask = 4
+		self.z_index = 0
+	elif up == true:
+		self.collision_layer = 5
+		self.collision_mask = 5
+		self.z_index = 2
+
+func _on_layer_2_body_exited(body: Node2D) -> void:
+	if body == self:
+		up = true
+		toggle_layer()
+
+func _on_layer_1_body_exited(body: Node2D) -> void:
+	if body == self:
+		up = false
+		toggle_layer()

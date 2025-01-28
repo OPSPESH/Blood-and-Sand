@@ -1,16 +1,17 @@
 extends CharacterBody2D
 
 @export var speed = 400
-@export var layer: String
+@export var up: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var attacking: bool
 var attack: String
 
 func _ready() -> void:
-	layer = "ground"
+	up = false
 	attacking = false
 	Global.player = self
+	toggle_layer()
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -28,9 +29,10 @@ func _physics_process(_delta: float) -> void:
 			elif Input.is_action_just_pressed("attack_2"):
 				attack = "heavy"
 			handle_attack_anim(attack, attack_faceing)
-	get_input()
-	move_and_slide()
-	animation(move_faceing)
+	if !attacking:
+		get_input()
+		move_and_slide()
+		animation(move_faceing)
 
 
 func animation(dir):
@@ -62,3 +64,24 @@ func handle_attack_anim(attack, dir):
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
+
+func toggle_layer():
+	print(up)
+	if up == false:
+		self.collision_layer = 1
+		self.collision_mask = 1
+		self.z_index = 0
+	elif up == true:
+		self.collision_layer = 2
+		self.collision_mask = 2
+		self.z_index = 2
+
+func _on_layer_2_body_exited(body: Node2D) -> void:
+	if body == self:
+		up = true
+		toggle_layer()
+
+func _on_layer_1_body_exited(body: Node2D) -> void:
+	if body == self:
+		up = false
+		toggle_layer()

@@ -66,7 +66,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
 
 func toggle_layer():
-	print(up)
 	if up == false:
 		self.collision_layer = 1
 		self.collision_mask = 1
@@ -77,11 +76,11 @@ func toggle_layer():
 		self.z_index = 2
 
 func _on_layer_2_body_exited(body: Node2D) -> void:
-	if body == self:
+	if body == $".":
 		up = true
 		toggle_layer()
 
 func _on_layer_1_body_exited(body: Node2D) -> void:
-	if body == self:
+	if body == $".":
 		up = false
 		toggle_layer()

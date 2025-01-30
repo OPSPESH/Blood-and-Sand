@@ -13,9 +13,9 @@ func _ready() -> void:
 	toggle_layer()
 
 func _process(_delta: float) -> void:
-	if chase != 0:
-		move()
-		animation(dir.x)
+	dir.x = abs(velocity.x) / velocity.x
+	move()
+	animation(dir.x)
 
 func move():
 	player = Global.player
@@ -54,22 +54,30 @@ func toggle_flip(direction):
 		sprite.flip_h = true
 
 func toggle_layer():
-	print(up)
 	if up == false:
-		self.collision_layer = 4
-		self.collision_mask = 4
+		self.collision_layer = 1
+		self.collision_mask = 1
 		self.z_index = 0
+		nav_agent.avoidance_layers = 1
+		nav_agent.avoidance_mask = 1
 	elif up == true:
-		self.collision_layer = 5
-		self.collision_mask = 5
+		self.collision_layer = 2
+		self.collision_mask = 2
 		self.z_index = 2
+		nav_agent.avoidance_layers = 2
+		nav_agent.avoidance_mask = 2
+	print(self.collision_layer)
+	print(self.collision_mask)
+	print(self.z_index)
+	print(nav_agent.avoidance_layers)
+	print(nav_agent.avoidance_mask)
 
 func _on_layer_2_body_exited(body: Node2D) -> void:
-	if body == self:
+	if body == $".":
 		up = true
 		toggle_layer()
 
 func _on_layer_1_body_exited(body: Node2D) -> void:
-	if body == self:
+	if body == $".":
 		up = false
 		toggle_layer()

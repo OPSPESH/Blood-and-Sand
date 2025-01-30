@@ -107,8 +107,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_niem3"]
-size = Vector2(64, 27)
+[sub_resource type="CircleShape2D" id="CircleShape2D_cpss8"]
+radius = 23.3339
 
 [node name="goblin_torch" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
@@ -127,8 +127,8 @@ frame = 1
 frame_progress = 0.320802
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 18.5)
-shape = SubResource("RectangleShape2D_niem3")
+position = Vector2(-1.33333, 13.3333)
+shape = SubResource("CircleShape2D_cpss8")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -138,5 +138,7 @@ autostart = true
 simplify_path = true
 avoidance_enabled = true
 debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1.92523e-07, 0, 0.734305, 1)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

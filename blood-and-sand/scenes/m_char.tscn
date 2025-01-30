@@ -147,10 +147,6 @@ region = Rect2(5568, 0, 192, 192)
 atlas = ExtResource("1_csx0q")
 region = Rect2(5760, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1goh0"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(7104, 0, 192, 192)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7ig5"]
 atlas = ExtResource("1_csx0q")
 region = Rect2(7296, 0, 192, 192)
@@ -158,6 +154,10 @@ region = Rect2(7296, 0, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ek1n"]
 atlas = ExtResource("1_csx0q")
 region = Rect2(7488, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1goh0"]
+atlas = ExtResource("1_csx0q")
+region = Rect2(7104, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kdwq"]
 atlas = ExtResource("1_csx0q")
@@ -337,13 +337,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1goh0")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_l7ig5")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8ek1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1goh0")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5kdwq")
@@ -382,8 +382,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fivaa"]
-size = Vector2(78, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_5kk88"]
+radius = 22.0227
 
 [node name="m_char" type="CharacterBody2D"]
 z_index = 2
@@ -399,8 +399,8 @@ frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6, 19)
-shape = SubResource("RectangleShape2D_fivaa")
+position = Vector2(1, 14)
+shape = SubResource("CircleShape2D_5kk88")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

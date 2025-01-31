@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 100
-@export var chase: int = 0 #0 = none, 1 = dumb, 2 = smart
+@export var chase: bool
 @export var up: bool = true
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
@@ -19,23 +19,20 @@ func _process(_delta: float) -> void:
 
 func move():
 	player = Global.player
-	if chase == 1:
-		if position.distance_to(player.position) > 50:
-			velocity = position.direction_to(player.position) * speed
-			dir.x = abs(velocity.x) / velocity.x
-		else:
-			velocity = Vector2(0,0)
-	elif chase == 2:
+	if chase == true:
 		if position.distance_to(player.position) > 50:
 			var dir = to_local(nav_agent.get_next_path_position()).normalized()
 			velocity = dir * speed
 		else:
 			velocity = Vector2(0,0)
-	move_and_slide()
+		move_and_slide()
+	elif chase == false:
+		velocity = Vector2(0,0)
 
 func makepath():
-	player = Global.player
-	nav_agent.target_position = player.global_position
+	if chase == true:
+		player = Global.player
+		nav_agent.target_position = player.global_position
 
 func _on_timer_timeout() -> void:
 	makepath()
@@ -58,19 +55,10 @@ func toggle_layer():
 		self.collision_layer = 1
 		self.collision_mask = 1
 		self.z_index = 0
-		nav_agent.avoidance_layers = 1
-		nav_agent.avoidance_mask = 1
 	elif up == true:
 		self.collision_layer = 2
 		self.collision_mask = 2
 		self.z_index = 2
-		nav_agent.avoidance_layers = 2
-		nav_agent.avoidance_mask = 2
-	print(self.collision_layer)
-	print(self.collision_mask)
-	print(self.z_index)
-	print(nav_agent.avoidance_layers)
-	print(nav_agent.avoidance_mask)
 
 func _on_layer_2_body_exited(body: Node2D) -> void:
 	if body == $".":

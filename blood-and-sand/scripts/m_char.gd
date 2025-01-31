@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 var attacking: bool
 var attack: String
+var input_direction: Vector2
 
 func _ready() -> void:
 	up = false
@@ -14,13 +15,11 @@ func _ready() -> void:
 	toggle_layer()
 
 func get_input():
-	var input_direction = Input.get_vector("left", "right", "up", "down")
+	input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
 func _physics_process(_delta: float) -> void:
 	var move_faceing = Input.get_axis("left", "right")
-	var attack_faceing = Input.get_axis("up", "down")
-	
 	if !attacking:
 		if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
 			attacking = true
@@ -28,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 				attack = "light"
 			elif Input.is_action_just_pressed("attack_2"):
 				attack = "heavy"
-			handle_attack_anim(attack, attack_faceing)
+			handle_attack_anim(attack)
 	if !attacking:
 		get_input()
 		move_and_slide()
@@ -50,21 +49,27 @@ func toggle_flip(dir):
 		sprite.flip_h = true
 
 @warning_ignore("shadowed_variable")
-func handle_attack_anim(attack, dir):
+func handle_attack_anim(attack):
+	var x = int(input_direction.x)
+	var y = int(input_direction.y)
 	if attack:
-		if !dir:
+		if !x and !y: 
 			var anim = str(attack)
 			sprite.play(anim)
-		if dir == -1:
+		elif x:
+			var anim = str(attack)
+			sprite.play(anim)
+		elif y == -1:
 			var anim = str(attack, "_up")
 			sprite.play(anim)
-		if dir == 1:
+		elif y == 1:
 			var anim = str(attack, "_down")
 			sprite.play(anim)
 
+
+
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attacking = false
-
 func toggle_layer():
 	if up == false:
 		self.collision_layer = 1
@@ -74,12 +79,10 @@ func toggle_layer():
 		self.collision_layer = 2
 		self.collision_mask = 2
 		self.z_index = 2
-
 func _on_layer_2_body_exited(body: Node2D) -> void:
 	if body == $".":
 		up = true
 		toggle_layer()
-
 func _on_layer_1_body_exited(body: Node2D) -> void:
 	if body == $".":
 		up = false

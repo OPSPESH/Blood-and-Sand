@@ -197,14 +197,14 @@ position = Vector2(1, 0)
 vertices = PackedVector2Array(2434, 126, 2433, -193, 2174, -193, 2175, 128)
 affect_navigation_mesh = true
 
-[node name="m_char" parent="." instance=ExtResource("2_ujipf")]
-position = Vector2(2847, 232)
-
 [node name="goblin_torch" parent="." instance=ExtResource("3_6rmxd")]
 position = Vector2(3168, -289)
 
+[node name="m_char" parent="." instance=ExtResource("2_ujipf")]
+position = Vector2(2847, 232)
+
 [connection signal="body_entered" from="map/layer 1" to="m_char" method="_on_layer_2_body_entered"]
-[connection signal="body_exited" from="map/layer 1" to="m_char" method="_on_layer_1_body_exited"]
 [connection signal="body_exited" from="map/layer 1" to="goblin_torch" method="_on_layer_1_body_exited"]
-[connection signal="body_exited" from="map/layer 2" to="m_char" method="_on_layer_2_body_exited"]
+[connection signal="body_exited" from="map/layer 1" to="m_char" method="_on_layer_1_body_exited"]
 [connection signal="body_exited" from="map/layer 2" to="goblin_torch" method="_on_layer_2_body_exited"]
+[connection signal="body_exited" from="map/layer 2" to="m_char" method="_on_layer_2_body_exited"]

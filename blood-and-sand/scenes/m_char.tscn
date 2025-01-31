@@ -1,7 +1,11 @@
-[gd_scene load_steps=53 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=54 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsdsy"]
+radius = 24.0
+height = 92.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mw4k"]
 atlas = ExtResource("1_csx0q")
@@ -391,9 +395,18 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_hsjyk")
 
+[node name="attack" type="Node" parent="."]
+
+[node name="up" type="Area2D" parent="attack"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/up"]
+position = Vector2(-1, -51)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bsdsy")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"light_up"
+animation = &"idle"
 autoplay = "idle"
 frame = 5
 frame_progress = 1.0

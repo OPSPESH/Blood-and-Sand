@@ -171,28 +171,26 @@ shape = SubResource("RectangleShape2D_x4dm3")
 position = Vector2(3711, -770)
 shape = SubResource("RectangleShape2D_3p8ss")
 
-[node name="nav" type="Node" parent="map"]
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="map/nav"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="map"]
 position = Vector2(-1, 0)
 navigation_polygon = SubResource("NavigationPolygon_u6tus")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="map/nav/NavigationRegion2D"]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="map/NavigationRegion2D"]
 position = Vector2(3201, 0)
 vertices = PackedVector2Array(184, -708, 447, -706, 446, -863, 577, -859, 577, -706, 702, -705, 704, -558, 184, -560)
 affect_navigation_mesh = true
 
-[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="map/nav/NavigationRegion2D"]
+[node name="NavigationObstacle2D2" type="NavigationObstacle2D" parent="map/NavigationRegion2D"]
 position = Vector2(1, 0)
 vertices = PackedVector2Array(3776, -324, 3776, -130, 3451, -129, 3450, -4, 3073, -2, 3072, 61, 3456, 63, 3456, -67, 3777, -65)
 affect_navigation_mesh = true
 
-[node name="NavigationObstacle2D3" type="NavigationObstacle2D" parent="map/nav/NavigationRegion2D"]
+[node name="NavigationObstacle2D3" type="NavigationObstacle2D" parent="map/NavigationRegion2D"]
 position = Vector2(1, 0)
 vertices = PackedVector2Array(2881, 60, 2880, -2, 2563, 0, 2566, -389, 2437, -394, 2438, -761, 2875, -763, 2872, -570, 3264, -576, 2879, -576, 2879, -767, 2433, -770, 2432, -320, 2561, -320, 2559, 59)
 affect_navigation_mesh = true
 
-[node name="NavigationObstacle2D4" type="NavigationObstacle2D" parent="map/nav/NavigationRegion2D"]
+[node name="NavigationObstacle2D4" type="NavigationObstacle2D" parent="map/NavigationRegion2D"]
 position = Vector2(1, 0)
 vertices = PackedVector2Array(2434, 126, 2433, -193, 2174, -193, 2175, 128)
 affect_navigation_mesh = true

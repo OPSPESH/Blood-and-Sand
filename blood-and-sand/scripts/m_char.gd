@@ -4,13 +4,15 @@ extends CharacterBody2D
 @export var up: bool = false
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-var attacking: bool
-var attack: String
+var attack: bool
+var attack_type: String
 var input_direction: Vector2
+
+#signal attack(action, direction)
 
 func _ready() -> void:
 	up = false
-	attacking = false
+	attack = false
 	Global.player = self
 	toggle_layer()
 
@@ -19,57 +21,103 @@ func get_input():
 	velocity = input_direction * speed
 
 func _physics_process(_delta: float) -> void:
-	var move_faceing = Input.get_axis("left", "right")
-	if !attacking:
+	Global.player_attack_zone_x = $"left-right"
+	Global.player_attack_zone_y = $"up-down"
+	if !attack:
 		if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
-			attacking = true
+			attack = true
 			if Input.is_action_just_pressed("attack_1"):
-				attack = "light"
+				attack_type = "light"
 			elif Input.is_action_just_pressed("attack_2"):
-				attack = "heavy"
-			handle_attack_anim(attack)
-	if !attacking:
+				attack_type = "heavy"
+			handle_attack_anim()
+	if !attack:
 		get_input()
 		move_and_slide()
-		animation(move_faceing)
+		animation()
 
 
-func animation(dir):
-	if !attacking:
+func animation():
+	if !attack:
 		if !velocity:
 			sprite.play("idle")
 		if velocity:
 			sprite.play("run")
-			toggle_flip(dir)
+			toggle_flip()
 
-func toggle_flip(dir):
-	if dir == 1:
+func toggle_flip():
+	var flip = Input.get_axis("left", "right")
+	if flip == 1:
 		sprite.flip_h = false
-	if dir == -1:
+	elif flip == -1:
 		sprite.flip_h = true
+	damage_flip()
 
-@warning_ignore("shadowed_variable")
-func handle_attack_anim(attack):
+func damage_flip():
 	var x = int(input_direction.x)
 	var y = int(input_direction.y)
-	if attack:
+	if x == 1:
+		$"left-right".scale.x = 1
+	elif x == -1:
+		$"left-right".scale.x = -1
+	elif y == -1:
+		$"up-down".scale.y = 1
+	elif y == 1:
+		$"up-down".scale.y = -1
+
+func handle_attack_anim():
+	var x = int(input_direction.x)
+	var y = int(input_direction.y)
+	var anim:String
+	if attack_type:
 		if !x and !y: 
-			var anim = str(attack)
+			anim = str(attack_type)
 			sprite.play(anim)
 		elif x:
-			var anim = str(attack)
+			anim = str(attack_type)
 			sprite.play(anim)
 		elif y == -1:
-			var anim = str(attack, "_up")
+			anim = str(attack_type, "_up")
 			sprite.play(anim)
 		elif y == 1:
-			var anim = str(attack, "_down")
+			anim = str(attack_type, "_down")
 			sprite.play(anim)
+		toggle_damage_collision()
+		set_damage()
 
+func toggle_damage_collision():
+	var collision_x = $"left-right".get_node("CollisionShape2D")
+	var collision_y = $"up-down".get_node("CollisionShape2D")
+	var x = int(input_direction.x)
+	var y = int(input_direction.y)
+	var wait_time:float
+	if attack_type == "light":
+		wait_time = 0.27
+	elif attack_type == "heavy":
+		wait_time = 0.6
+	if !x and !y:
+		collision_x.disabled = false
+		await get_tree().create_timer(wait_time).timeout
+		collision_x.disabled = true
+	elif x:
+		collision_x.disabled = false
+		await get_tree().create_timer(wait_time).timeout
+		collision_x.disabled = true
+	elif y:
+		collision_y.disabled = false
+		await get_tree().create_timer(wait_time).timeout
+		collision_y.disabled = true
 
+func set_damage():
+	var damage:int
+	if attack_type == "light":
+		damage = 1
+	elif attack_type == "heavy":
+		damage = 2
+	Global.player_damage = damage
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	attacking = false
+	attack = false
 func toggle_layer():
 	if up == false:
 		self.collision_layer = 1

@@ -1,15 +1,7 @@
-[gd_scene load_steps=54 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=48 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsdsy"]
-radius = 24.0
-height = 92.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mw4k"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(3648, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_es6tl"]
 atlas = ExtResource("1_csx0q")
@@ -103,14 +95,6 @@ region = Rect2(960, 0, 192, 192)
 atlas = ExtResource("1_csx0q")
 region = Rect2(1152, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f7bhb"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(2496, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5dbda"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(2688, 0, 192, 192)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewpf0"]
 atlas = ExtResource("1_csx0q")
 region = Rect2(2880, 0, 192, 192)
@@ -127,14 +111,6 @@ region = Rect2(3264, 0, 192, 192)
 atlas = ExtResource("1_csx0q")
 region = Rect2(3456, 0, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w1505"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(4800, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbkdb"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(4992, 0, 192, 192)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogr1y"]
 atlas = ExtResource("1_csx0q")
 region = Rect2(5184, 0, 192, 192)
@@ -150,14 +126,6 @@ region = Rect2(5568, 0, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_snvfj"]
 atlas = ExtResource("1_csx0q")
 region = Rect2(5760, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7ig5"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(7296, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ek1n"]
-atlas = ExtResource("1_csx0q")
-region = Rect2(7488, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1goh0"]
 atlas = ExtResource("1_csx0q")
@@ -202,9 +170,6 @@ region = Rect2(2304, 0, 192, 192)
 [sub_resource type="SpriteFrames" id="SpriteFrames_i8c3d"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2mw4k")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_es6tl")
 }, {
@@ -295,12 +260,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f7bhb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5dbda")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ewpf0")
 }, {
 "duration": 1.0,
@@ -318,12 +277,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w1505")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbkdb")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ogr1y")
 }, {
 "duration": 1.0,
@@ -340,12 +293,6 @@ animations = [{
 "speed": 15.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7ig5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8ek1n")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_1goh0")
 }, {
@@ -389,32 +336,44 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5kk88"]
 radius = 22.0227
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jvytk"]
+radius = 34.0
+height = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k7ar7"]
+radius = 34.0
+height = 106.0
+
 [node name="m_char" type="CharacterBody2D"]
 z_index = 2
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_hsjyk")
 
-[node name="attack" type="Node" parent="."]
-
-[node name="up" type="Area2D" parent="attack"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack/up"]
-position = Vector2(-1, -51)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_bsdsy")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"idle"
+animation = &"light"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 14)
 shape = SubResource("CircleShape2D_5kk88")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="up-down" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up-down"]
+position = Vector2(0, -50)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jvytk")
+disabled = true
+
+[node name="left-right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left-right"]
+position = Vector2(45, -9)
+shape = SubResource("CapsuleShape2D_k7ar7")
+disabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -26,11 +26,17 @@ func _process(_delta: float) -> void:
 
 func move():
 	player = Global.player
-	if position.distance_to(player.position) > 50:
-		var dir = to_local(nav_agent.get_next_path_position()).normalized()
-		velocity = dir * speed
-	else:
-		velocity = Vector2(0,0)
+	if !taking_damage:
+		if position.distance_to(player.position) > 50:
+			var dir = to_local(nav_agent.get_next_path_position()).normalized()
+			velocity = dir * speed
+		else:
+			velocity = Vector2(0,0)
+	elif taking_damage:
+		velocity = position.direction_to(player.position) * -250
+		move_and_slide()
+		await get_tree().create_timer(0.3).timeout
+		taking_damage = false
 	move_and_slide()
 	
 

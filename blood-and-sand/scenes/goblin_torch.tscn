@@ -285,11 +285,12 @@ radius = 46.6857
 
 [node name="goblin_torch" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
-collision_layer = 8
-collision_mask = 8
+collision_layer = 3
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_s2fw3")
+health = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q2ntw")
@@ -305,13 +306,11 @@ wait_time = 0.1
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-simplify_path = true
 avoidance_enabled = true
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_color = Color(1.92523e-07, 0, 0.734305, 1)
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_yvmo2")
@@ -319,5 +318,3 @@ shape = SubResource("CircleShape2D_yvmo2")
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_shape_entered" from="hitbox" to="." method="_on_hitbox_area_shape_entered"]
-[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

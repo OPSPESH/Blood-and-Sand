@@ -362,6 +362,8 @@ shape = SubResource("CircleShape2D_5kk88")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="up-down" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up-down"]
 position = Vector2(0, -50)
@@ -370,6 +372,8 @@ shape = SubResource("CapsuleShape2D_jvytk")
 disabled = true
 
 [node name="left-right" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left-right"]
 position = Vector2(45, -9)

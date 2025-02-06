@@ -1,0 +1,31 @@
+[gd_scene load_steps=10 format=3 uid="uid://map"]
+
+[ext_resource type="PackedScene" path="res://assets/map/bridge_0.tscn" id="0_id"]
+[ext_resource type="PackedScene" path="res://assets/map/grass_1.tscn" id="1_id"]
+[ext_resource type="PackedScene" path="res://assets/map/moar_grass_2.tscn" id="2_id"]
+[ext_resource type="PackedScene" path="res://assets/map/cliff_3.tscn" id="3_id"]
+[ext_resource type="PackedScene" path="res://assets/map/rock_4.tscn" id="4_id"]
+[ext_resource type="PackedScene" path="res://assets/map/stair_5.tscn" id="5_id"]
+[ext_resource type="PackedScene" path="res://assets/map/sand_6.tscn" id="6_id"]
+[ext_resource type="PackedScene" path="res://assets/map/water_7.tscn" id="7_id"]
+[ext_resource type="PackedScene" path="res://assets/map/water_collision_8.tscn" id="8_id"]
+
+[node name="arena" type="Node2D"]
+
+[node name="water_collision_8" parent="." instance=ExtResource("8_id")]
+
+[node name="water_7" parent="." instance=ExtResource("7_id")]
+
+[node name="sand_6" parent="." instance=ExtResource("6_id")]
+
+[node name="stair_5" parent="." instance=ExtResource("5_id")]
+
+[node name="rock_4" parent="." instance=ExtResource("4_id")]
+
+[node name="cliff_3" parent="." instance=ExtResource("3_id")]
+
+[node name="moar_grass_2" parent="." instance=ExtResource("2_id")]
+
+[node name="grass_1" parent="." instance=ExtResource("1_id")]
+
+[node name="bridge_0" parent="." instance=ExtResource("0_id")]

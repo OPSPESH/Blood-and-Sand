@@ -14,15 +14,14 @@ func _ready() -> void:
 	up = false
 	attack = false
 	Global.player = self
-	toggle_layer()
 
 func get_input():
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
 func _physics_process(_delta: float) -> void:
-	Global.player_attack_zone_x = $"left-right"
-	Global.player_attack_zone_y = $"up-down"
+	Global.player_attack_zone_x = $"left-right_player"
+	Global.player_attack_zone_y = $"up-down_player"
 	if !attack:
 		if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
 			attack = true
@@ -57,13 +56,13 @@ func damage_flip():
 	var x = int(input_direction.x)
 	var y = int(input_direction.y)
 	if x == 1:
-		$"left-right".scale.x = 1
+		$"left-right_player".scale.x = 1
 	elif x == -1:
-		$"left-right".scale.x = -1
+		$"left-right_player".scale.x = -1
 	elif y == -1:
-		$"up-down".scale.y = 1
+		$"up-down_player".scale.y = 1
 	elif y == 1:
-		$"up-down".scale.y = -1
+		$"up-down_player".scale.y = -1
 
 func handle_attack_anim():
 	var x = int(input_direction.x)
@@ -86,8 +85,8 @@ func handle_attack_anim():
 		set_damage()
 
 func toggle_damage_collision():
-	var collision_x = $"left-right".get_node("CollisionShape2D")
-	var collision_y = $"up-down".get_node("CollisionShape2D")
+	var collision_x = $"left-right_player".get_node("CollisionShape2D")
+	var collision_y = $"up-down_player".get_node("CollisionShape2D")
 	var x = int(input_direction.x)
 	var y = int(input_direction.y)
 	var wait_time:float
@@ -118,20 +117,3 @@ func set_damage():
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attack = false
-func toggle_layer():
-	if up == false:
-		self.collision_layer = 1
-		self.collision_mask = 1
-		self.z_index = 0
-	elif up == true:
-		self.collision_layer = 2
-		self.collision_mask = 2
-		self.z_index = 2
-func _on_layer_2_body_exited(body: Node2D) -> void:
-	if body == $".":
-		up = true
-		toggle_layer()
-func _on_layer_1_body_exited(body: Node2D) -> void:
-	if body == $".":
-		up = false
-		toggle_layer()

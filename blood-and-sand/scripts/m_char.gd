@@ -8,8 +8,6 @@ var attack: bool
 var attack_type: String
 var input_direction: Vector2
 
-#signal attack(action, direction)
-
 func _ready() -> void:
 	up = false
 	attack = false
@@ -20,8 +18,6 @@ func get_input():
 	velocity = input_direction * speed
 
 func _physics_process(_delta: float) -> void:
-	Global.player_attack_zone_x = $"left-right_player"
-	Global.player_attack_zone_y = $"up-down_player"
 	if !attack:
 		if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
 			attack = true
@@ -59,7 +55,7 @@ func damage_flip():
 		$"left-right_player".scale.x = 1
 	elif x == -1:
 		$"left-right_player".scale.x = -1
-	elif y == -1:
+	if y == -1:
 		$"up-down_player".scale.y = 1
 	elif y == 1:
 		$"up-down_player".scale.y = -1

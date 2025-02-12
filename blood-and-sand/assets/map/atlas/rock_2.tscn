@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://c7aphi6w3aka6"]
+
+[ext_resource type="Texture2D" uid="uid://b6mcis6w0tp78" path="res://assets/map/atlas/Rocks_02.png" id="1_0q0o7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfpug"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ber5f"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo4ht"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ohyp"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81yi7"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjgm3"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymhpt"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47uy2"]
+atlas = ExtResource("1_0q0o7")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6mgju"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfpug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ber5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo4ht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ohyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81yi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjgm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymhpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47uy2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="rock_2" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_6mgju")
+autoplay = "default"
+frame_progress = 0.282824

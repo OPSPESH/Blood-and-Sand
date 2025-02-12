@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds2vi8xjjvkuo"
-path="res://.godot/imported/Tilemap_Elevation.png-2bbceef90a30b8e345e1ba3dd860766a.ctex"
+uid="uid://b6mcis6w0tp78"
+path="res://.godot/imported/Rocks_02.png-ea4d2a4c00dc4495c27de679ac6202e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arena/Tilemap_Elevation.png"
-dest_files=["res://.godot/imported/Tilemap_Elevation.png-2bbceef90a30b8e345e1ba3dd860766a.ctex"]
+source_file="res://assets/map/atlas/Rocks_02.png"
+dest_files=["res://.godot/imported/Rocks_02.png-ea4d2a4c00dc4495c27de679ac6202e6.ctex"]
 
 [params]
 

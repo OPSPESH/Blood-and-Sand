@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cu2pe5fp8kd72"]
+[gd_scene load_steps=45 format=3 uid="uid://cu2pe5fp8kd72"]
 
 [ext_resource type="Script" path="res://scripts/goblin_torch.gd" id="1_s2fw3"]
 [ext_resource type="Texture2D" uid="uid://dhk2yuquu462c" path="res://assets/goblin/Torch_Red.png" id="1_v5orh"]
@@ -194,7 +194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jtyqq")
 }, {
-"duration": 1.0,
+"duration": 9.22337e+18,
 "texture": SubResource("AtlasTexture_jucsb")
 }, {
 "duration": 1.0,
@@ -283,6 +283,14 @@ radius = 23.3339
 [sub_resource type="CircleShape2D" id="CircleShape2D_yvmo2"]
 radius = 46.6857
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyxyf"]
+radius = 20.0
+height = 66.6667
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ochg6"]
+radius = 21.0
+height = 85.3333
+
 [node name="goblin_torch" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
 collision_layer = 3
@@ -294,27 +302,53 @@ health = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q2ntw")
-animation = &"hurt"
+animation = &"light_up"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-1.33333, 13.3333)
 shape = SubResource("CircleShape2D_cpss8")
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
 [node name="hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_yvmo2")
 
+[node name="timers" type="Node" parent="."]
+
+[node name="knockback" type="Timer" parent="timers"]
+wait_time = 0.15
+one_shot = true
+
+[node name="makepath" type="Timer" parent="timers"]
+wait_time = 0.1
+autostart = true
+
+[node name="left_right goblin" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_right goblin"]
+position = Vector2(58.6667, 4)
+shape = SubResource("CapsuleShape2D_eyxyf")
+disabled = true
+
+[node name="up_down goblin" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="up_down goblin"]
+position = Vector2(-4, -41.3333)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ochg6")
+disabled = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="timers/knockback" to="." method="_on_knockback_timeout"]
+[connection signal="timeout" from="timers/makepath" to="." method="_on_makepath_timeout"]

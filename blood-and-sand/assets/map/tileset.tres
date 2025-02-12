@@ -1,9 +1,14 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://6nptssmmgahh"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://6nptssmmgahh"]
 
-[ext_resource type="Texture2D" uid="uid://bx3afshos6yjd" path="res://assets/map/tileset.png" id="1_gqa13"]
+[ext_resource type="Texture2D" uid="uid://bx3afshos6yjd" path="res://assets/map/atlas/tileset.png" id="1_xkpnn"]
+[ext_resource type="PackedScene" uid="uid://dyda2cy4c7h0i" path="res://assets/map/atlas/foam.tscn" id="2_6feo8"]
+[ext_resource type="PackedScene" uid="uid://dfjvj2pfbwfa" path="res://assets/map/atlas/rock_1.tscn" id="3_u1dsq"]
+[ext_resource type="PackedScene" uid="uid://c7aphi6w3aka6" path="res://assets/map/atlas/rock_2.tscn" id="4_m7wu8"]
+[ext_resource type="PackedScene" uid="uid://ds5rlrrd0dy4g" path="res://assets/map/atlas/rock_3.tscn" id="5_linxv"]
+[ext_resource type="PackedScene" uid="uid://cgstqm4lqlqe6" path="res://assets/map/atlas/rock_4.tscn" id="6_vr2lr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c8QkSnvFASN"]
-texture = ExtResource("1_gqa13")
+texture = ExtResource("1_xkpnn")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -52,8 +57,16 @@ texture_region_size = Vector2i(64, 64)
 4:5/0 = 0
 4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ce3ub"]
+scenes/1/scene = ExtResource("2_6feo8")
+scenes/2/scene = ExtResource("3_u1dsq")
+scenes/3/scene = ExtResource("4_m7wu8")
+scenes/4/scene = ExtResource("5_linxv")
+scenes/5/scene = ExtResource("6_vr2lr")
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_c8QkSnvFASN")
+sources/7 = SubResource("TileSetScenesCollectionSource_ce3ub")

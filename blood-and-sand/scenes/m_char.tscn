@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=49 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
@@ -273,7 +273,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -307,7 +307,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"light_up",
-"speed": 15.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -337,12 +337,15 @@ animations = [{
 radius = 22.0227
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jvytk"]
-radius = 34.0
+radius = 30.0
 height = 120.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k7ar7"]
-radius = 34.0
-height = 106.0
+radius = 24.0
+height = 82.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rytpk"]
+radius = 41.0122
 
 [node name="m_char" type="CharacterBody2D"]
 z_index = 2
@@ -352,32 +355,41 @@ script = ExtResource("1_hsjyk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"light"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1, 14)
 shape = SubResource("CircleShape2D_5kk88")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 
 [node name="up-down_player" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="up-down_player"]
-position = Vector2(0, -50)
+position = Vector2(1, -33)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_jvytk")
 disabled = true
 
 [node name="left-right_player" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="left-right_player"]
-position = Vector2(45, -9)
+position = Vector2(53, -7)
 shape = SubResource("CapsuleShape2D_k7ar7")
 disabled = true
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_rytpk")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=74 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d1406eejpqw70" path="res://assets/m_char/hurt5.png" id="6_0s43v"]
 [ext_resource type="Texture2D" uid="uid://cjoped14mxcbk" path="res://assets/m_char/hurt6.png" id="7_r16ay"]
 [ext_resource type="Script" path="res://scripts/debug_gui.gd" id="11_0gqgv"]
+[ext_resource type="PackedScene" uid="uid://ckc1sg17rg3xr" path="res://addons/terminal/terminal_menu.tscn" id="12_vesn3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpmtq"]
 atlas = ExtResource("2_awkmh")
@@ -502,7 +503,7 @@ script = ExtResource("1_hsjyk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"die"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -578,6 +579,10 @@ layout_mode = 2
 
 [node name="time" type="Timer" parent="debug gui"]
 autostart = true
+
+[node name="TerminalMenu" parent="debug gui" instance=ExtResource("12_vesn3")]
+visible = false
+startOpen = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

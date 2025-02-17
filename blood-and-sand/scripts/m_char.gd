@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 400
 @export var up: bool = false
-@export var health: int = 20
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var attack: bool
@@ -12,11 +10,21 @@ var input_direction: Vector2
 var dead:bool = false
 var taking_damage: bool = false
 
+var health
+var speed
+
 func _ready() -> void:
+	Player.connect("update", update)
 	up = false
 	attack = false
 	Global.player = self
 	Global.alive = true
+	
+	health = Player.health
+	speed = Player.speed
+
+func update():
+	print("hello")
 
 func get_input():
 	input_direction = Input.get_vector("left", "right", "up", "down")
@@ -134,7 +142,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func take_damage(damage):
 	health -= damage
 	taking_damage = true
-	print(health)
 	if health <= 0:
 		health = 0
 		$hitbox/CollisionShape2D.set_deferred("disabled", true)

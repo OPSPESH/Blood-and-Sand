@@ -9,7 +9,7 @@ func _ready() -> void:
 	if OS.is_debug_build():
 		render = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if render and main:
 		var fps = Engine.get_frames_per_second()
 		var architecture = Engine.get_architecture_name()

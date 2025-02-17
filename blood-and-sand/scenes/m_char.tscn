@@ -1,7 +1,76 @@
-[gd_scene load_steps=49 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=73 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
+[ext_resource type="Texture2D" uid="uid://cfoc8r0cc5cxn" path="res://assets/dead/Dead.png" id="2_awkmh"]
+[ext_resource type="Texture2D" uid="uid://cxf57de0f1rko" path="res://assets/m_char/hurt1.png" id="2_tt7pn"]
+[ext_resource type="Texture2D" uid="uid://cbgs32gmnnpoq" path="res://assets/m_char/hurt2.png" id="3_45wce"]
+[ext_resource type="Texture2D" uid="uid://dx6lydrwlmo6e" path="res://assets/dead/blank.png" id="3_ebtqs"]
+[ext_resource type="Texture2D" uid="uid://cstllvujvgge3" path="res://assets/m_char/hurt3.png" id="4_mfl6m"]
+[ext_resource type="Texture2D" uid="uid://d2nyktvxclfi5" path="res://assets/m_char/hurt4.png" id="5_g4er2"]
+[ext_resource type="Texture2D" uid="uid://d1406eejpqw70" path="res://assets/m_char/hurt5.png" id="6_0s43v"]
+[ext_resource type="Texture2D" uid="uid://cjoped14mxcbk" path="res://assets/m_char/hurt6.png" id="7_r16ay"]
+[ext_resource type="Script" path="res://scripts/debug_gui.gd" id="11_0gqgv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpmtq"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ptij"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njof8"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjsao"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dugdk"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spbwj"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtdh7"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(768, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os4u7"]
+atlas = ExtResource("3_ebtqs")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fde2q"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nipyq"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wok1e"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl2fc"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4t6n5"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w700r"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd0e1"]
+atlas = ExtResource("2_awkmh")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_es6tl"]
 atlas = ExtResource("1_csx0q")
@@ -171,6 +240,61 @@ region = Rect2(2304, 0, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jpmtq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ptij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njof8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjsao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dugdk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spbwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtdh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os4u7")
+}],
+"loop": false,
+"name": &"bury",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fde2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nipyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wok1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl2fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4t6n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w700r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd0e1")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_es6tl")
 }, {
 "duration": 1.0,
@@ -233,6 +357,29 @@ animations = [{
 }],
 "loop": false,
 "name": &"heavy_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tt7pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_45wce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mfl6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4er2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0s43v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r16ay")
+}],
+"loop": false,
+"name": &"hurt",
 "speed": 10.0
 }, {
 "frames": [{
@@ -355,7 +502,7 @@ script = ExtResource("1_hsjyk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_i8c3d")
-animation = &"idle"
+animation = &"die"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -392,4 +539,46 @@ disabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("CircleShape2D_rytpk")
 
+[node name="debug gui" type="CanvasLayer" parent="."]
+script = ExtResource("11_0gqgv")
+
+[node name="GridContainer" type="GridContainer" parent="debug gui"]
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="fps label" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+text = "FPS"
+
+[node name="fps" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+
+[node name="architecture label" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+text = "CPU"
+
+[node name="architecture" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+
+[node name="frames label" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+text = "Total frames"
+
+[node name="frames" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+
+[node name="time label" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+text = "Time elapsed
+"
+
+[node name="time" type="Label" parent="debug gui/GridContainer"]
+layout_mode = 2
+
+[node name="time" type="Timer" parent="debug gui"]
+autostart = true
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="debug gui/time" to="debug gui" method="_on_time_timeout"]

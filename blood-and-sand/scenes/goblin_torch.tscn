@@ -1,13 +1,71 @@
-[gd_scene load_steps=45 format=3 uid="uid://cu2pe5fp8kd72"]
+[gd_scene load_steps=60 format=3 uid="uid://cu2pe5fp8kd72"]
 
 [ext_resource type="Script" path="res://scripts/goblin_torch.gd" id="1_s2fw3"]
 [ext_resource type="Texture2D" uid="uid://dhk2yuquu462c" path="res://assets/goblin/Torch_Red.png" id="1_v5orh"]
+[ext_resource type="Texture2D" uid="uid://cfoc8r0cc5cxn" path="res://assets/dead/Dead.png" id="2_0tqrw"]
 [ext_resource type="Texture2D" uid="uid://b2sv1lutiy8v8" path="res://assets/goblin/hurt1.png" id="2_c7m7e"]
+[ext_resource type="Texture2D" uid="uid://dx6lydrwlmo6e" path="res://assets/dead/blank.png" id="3_48gyb"]
 [ext_resource type="Texture2D" uid="uid://dr7lmehcotjnl" path="res://assets/goblin/hurt2.png" id="3_dqk3r"]
 [ext_resource type="Texture2D" uid="uid://dj8hjaty58i7p" path="res://assets/goblin/hurt3.png" id="4_i76dg"]
 [ext_resource type="Texture2D" uid="uid://c25hdxqxaa3uv" path="res://assets/goblin/hurt4.png" id="5_d7iv0"]
 [ext_resource type="Texture2D" uid="uid://bn5vbdq2hngum" path="res://assets/goblin/hurt5.png" id="6_cwqen"]
 [ext_resource type="Texture2D" uid="uid://b6yc84xrkd4bu" path="res://assets/goblin/hurt6.png" id="7_ldsst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m32mn"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naqyh"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuxwj"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11bbn"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wosy"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(512, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujddq"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(640, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1yna"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(768, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tb3hp"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doxw5"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okllr"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg5qp"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkkaj"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g2ya"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w7jn"]
+atlas = ExtResource("2_0tqrw")
+region = Rect2(768, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h1y70"]
 atlas = ExtResource("1_v5orh")
@@ -137,6 +195,61 @@ region = Rect2(960, 192, 192, 192)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_m32mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naqyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuxwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11bbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wosy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujddq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1yna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_48gyb")
+}],
+"loop": false,
+"name": &"bury",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tb3hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doxw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okllr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg5qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkkaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g2ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0w7jn")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_c7m7e")
 }, {
 "duration": 1.0,
@@ -194,7 +307,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jtyqq")
 }, {
-"duration": 9.22337e+18,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jucsb")
 }, {
 "duration": 1.0,
@@ -283,13 +396,8 @@ radius = 23.3339
 [sub_resource type="CircleShape2D" id="CircleShape2D_yvmo2"]
 radius = 46.6857
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyxyf"]
-radius = 20.0
-height = 66.6667
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ochg6"]
-radius = 21.0
-height = 85.3333
+[sub_resource type="CircleShape2D" id="CircleShape2D_vr0nr"]
+radius = 45.3333
 
 [node name="goblin_torch" type="CharacterBody2D"]
 scale = Vector2(0.75, 0.75)
@@ -298,11 +406,10 @@ collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_s2fw3")
-health = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q2ntw")
-animation = &"light_up"
+animation = &"light"
 autoplay = "idle"
 frame = 5
 frame_progress = 1.0
@@ -333,19 +440,12 @@ one_shot = true
 wait_time = 0.1
 autostart = true
 
-[node name="left_right goblin" type="Area2D" parent="."]
+[node name="goblin_attack" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="left_right goblin"]
-position = Vector2(58.6667, 4)
-shape = SubResource("CapsuleShape2D_eyxyf")
-disabled = true
-
-[node name="up_down goblin" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="up_down goblin"]
-position = Vector2(-4, -41.3333)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goblin_attack"]
+position = Vector2(0, 3.8147e-06)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ochg6")
+shape = SubResource("CircleShape2D_vr0nr")
 disabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

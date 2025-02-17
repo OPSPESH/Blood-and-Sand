@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Blood and sand"
+config/version="0.1"
 run/main_scene="res://scenes/arena.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://assets/m_char/hurt1.png"
 
 [autoload]
 
@@ -24,6 +26,8 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=2
+mouse_cursor/custom_image="res://assets/mouse.png"
 
 [input]
 
@@ -67,3 +71,4 @@ attack_2={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true

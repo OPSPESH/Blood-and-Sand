@@ -2,35 +2,39 @@ extends CharacterBody2D
 
 @export var speed = 400
 @export var up: bool = false
+@export var health: int = 20
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var attack: bool
 var attack_type: String
 var input_direction: Vector2
 
+var dead:bool = false
+var taking_damage: bool = false
+
 func _ready() -> void:
 	up = false
 	attack = false
 	Global.player = self
+	Global.alive = true
 
 func get_input():
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 
 func _physics_process(_delta: float) -> void:
-	if !attack:
-		if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
-			attack = true
-			if Input.is_action_just_pressed("attack_1"):
-				attack_type = "light"
-			elif Input.is_action_just_pressed("attack_2"):
-				attack_type = "heavy"
-			handle_attack_anim()
-	if !attack:
-		get_input()
-		move_and_slide()
-		animation()
-
+	if !dead:
+		if !attack:
+			if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
+				attack = true
+				if Input.is_action_just_pressed("attack_1"):
+					attack_type = "light"
+				elif Input.is_action_just_pressed("attack_2"):
+					attack_type = "heavy"
+				handle_attack_anim()
+			get_input()
+			move_and_slide()
+			animation()
 
 func animation():
 	if !attack:
@@ -113,3 +117,27 @@ func set_damage():
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attack = false
+	taking_damage = false
+
+func die():
+	dead = true
+	Global.alive = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	sprite.play("die")
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if "goblin" in area.name:
+		if !taking_damage:
+			var damage = Global.goblin_damage
+			take_damage(damage)
+
+func take_damage(damage):
+	health -= damage
+	taking_damage = true
+	print(health)
+	if health <= 0:
+		health = 0
+		$hitbox/CollisionShape2D.set_deferred("disabled", true)
+		die()
+	if !dead:
+		sprite.play("hurt")

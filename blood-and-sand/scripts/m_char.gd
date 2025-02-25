@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 @export var up: bool = false
+#@export var terminal_open: bool = true
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var attack: bool
 var attack_type: String
-var input_direction: Vector2
+var dir: Vector2
 
 var dead:bool = false
 var taking_damage: bool = false
@@ -24,14 +25,17 @@ func _ready() -> void:
 	speed = Player.speed
 
 func update():
-	print("hello")
+	health = Player.health
+	speed = Player.speed
 
 func get_input():
-	input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * speed
+	dir = Input.get_vector("left", "right", "up", "down")
+	velocity = dir * speed
 
 func _physics_process(_delta: float) -> void:
-	if !dead:
+	#if Input.is_action_just_pressed("toggle_terminal_menu"):
+	#	terminal_open = !terminal_open
+	if !dead:# and !terminal_open:
 		if !attack:
 			if Input.is_action_just_pressed("attack_1") or Input.is_action_just_pressed("attack_2"):
 				attack = true
@@ -61,8 +65,8 @@ func toggle_flip():
 	damage_flip()
 
 func damage_flip():
-	var x = int(input_direction.x)
-	var y = int(input_direction.y)
+	var x = int(dir.x)
+	var y = int(dir.y)
 	if x == 1:
 		$"left-right_player".scale.x = 1
 	elif x == -1:
@@ -73,8 +77,8 @@ func damage_flip():
 		$"up-down_player".scale.y = -1
 
 func handle_attack_anim():
-	var x = int(input_direction.x)
-	var y = int(input_direction.y)
+	var x = int(dir.x)
+	var y = int(dir.y)
 	var anim:String
 	if attack_type:
 		if !x and !y: 
@@ -95,8 +99,8 @@ func handle_attack_anim():
 func toggle_damage_collision():
 	var collision_x = $"left-right_player".get_node("CollisionShape2D")
 	var collision_y = $"up-down_player".get_node("CollisionShape2D")
-	var x = int(input_direction.x)
-	var y = int(input_direction.y)
+	var x = int(dir.x)
+	var y = int(dir.y)
 	var wait_time:float
 	if attack_type == "light":
 		wait_time = 0.27
@@ -128,10 +132,12 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	taking_damage = false
 
 func die():
+	dir = Vector2(0,0)
 	dead = true
 	Global.alive = false
 	$CollisionShape2D.set_deferred("disabled", true)
 	sprite.play("die")
+	$sounds/death.play()
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if "goblin" in area.name:

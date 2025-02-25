@@ -44,7 +44,7 @@ func attack():
 func set_damage():
 	var damage: int
 	if attacking:
-		damage = 1
+		damage = 10
 		Global.goblin_damage = damage
 		attack_anim()
 		await get_tree().create_timer(0.5).timeout
@@ -76,6 +76,7 @@ func toggle_damage_collision():
 	collision.disabled = true
 
 func move():
+	dir = Vector2(0,0)
 	if alive:
 		player = Global.player
 		if position.distance_to(player.position) > 50:
@@ -131,9 +132,11 @@ func _on_knockback_timeout() -> void:
 	taking_damage = false
 
 func die():
+	dir = Vector2(0,0)
 	dead = true
 	$CollisionShape2D.set_deferred("disabled", true)
 	sprite.play("dead")
+	$sounds/death.play(0.0)
 	await get_tree().create_timer(1.7).timeout
 	sprite.play("bury")
 	await get_tree().create_timer(0.7).timeout

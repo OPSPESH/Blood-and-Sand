@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://crjmkc5leh3co"]
+[gd_scene load_steps=18 format=3 uid="uid://crjmkc5leh3co"]
 
 [ext_resource type="PackedScene" uid="uid://map" path="res://assets/map/Map.tscn" id="1_up16o"]
+[ext_resource type="Script" path="res://scripts/levels.gd" id="2_qv82i"]
 [ext_resource type="PackedScene" uid="uid://c3xg3pkjyfbxa" path="res://scenes/m_char.tscn" id="2_ujipf"]
 [ext_resource type="PackedScene" uid="uid://cu2pe5fp8kd72" path="res://scenes/goblin_torch.tscn" id="3_6rmxd"]
 
@@ -46,6 +47,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(3775, -517, 4094, -516, 4096, -704, 4222, -705, 4222, -893, 3331, -896, 3331, -577, 3267, -576, 3265, -638, 3201, -639, 3201, -703, 3136, -705, 3134, -768, 3074, -767, 3073, -831, 3010, -834, 3008, -896, 2943, -897, 2942, -961, 2883, -962, 2881, -1022, 2691, -1021, 2691, -959, 2496, -959, 2496, -1023, 2431, -1025, 2433, -962, 2375, -959, 2368, -895, 2306, -895, 2304, -832, 2242, -830, 2246, -702, 2178, -705, 2175, -454, 2110, -445, 2110, -327, 2047, -323, 2049, -193, 1985, -187, 1980, 61, 1983, 254, 2049, 258, 2047, 384, 2115, 386, 2115, 448, 2242, 449, 2244, 512, 2818, 512, 2819, 450, 3010, 446, 3011.6, 382.542, 3072, 382, 3076, 257, 3204, 260, 3209, 321, 3461, 323, 3456, 257, 3586, 258, 3584, 194, 3649, 187, 3652, 130, 3778, 130, 3779, 67, 3911.57, 66.4821, 3908, 3, 3971, 6, 3973, -123, 4034, -126, 4033, -254, 3969, -258, 3969, -318, 3905, -320, 3905, -384, 3778, -383)])
 
 [node name="arena" type="Node"]
+
+[node name="m_char2" parent="." instance=ExtResource("2_ujipf")]
+position = Vector2(1705, 1279)
 
 [node name="map" type="Node" parent="."]
 
@@ -129,9 +133,26 @@ position = Vector2(1, 0)
 vertices = PackedVector2Array(2434, 126, 2433, -193, 2174, -193, 2175, 128)
 affect_navigation_mesh = true
 
-[node name="m_char" parent="." instance=ExtResource("2_ujipf")]
-position = Vector2(1682, 1379)
+[node name="spawners" type="Node" parent="map"]
+script = ExtResource("2_qv82i")
+
+[node name="spawn_1" type="Node2D" parent="map/spawners"]
+position = Vector2(1314, 797)
+
+[node name="spawn_2" type="Node2D" parent="map/spawners"]
+position = Vector2(2305, 1152)
+
+[node name="spawn_3" type="Node2D" parent="map/spawners"]
+position = Vector2(2721, 661)
+
+[node name="spawn_4" type="Node2D" parent="map/spawners"]
+position = Vector2(1677, 745)
+
+[node name="spawn_5" type="Node2D" parent="map/spawners"]
+position = Vector2(2075, 1637)
+
+[node name="spawn_6" type="Node2D" parent="map/spawners"]
+position = Vector2(808, 1550)
 
 [node name="goblin_torch" parent="." instance=ExtResource("3_6rmxd")]
-position = Vector2(1750, 1048)
-chase = false
+position = Vector2(1789, 1066)

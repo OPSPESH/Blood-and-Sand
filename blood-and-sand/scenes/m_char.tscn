@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c3xg3pkjyfbxa"]
+[gd_scene load_steps=75 format=3 uid="uid://c3xg3pkjyfbxa"]
 
 [ext_resource type="Texture2D" uid="uid://cx4gycgulhd64" path="res://assets/m_char/Warrior_Blue.png" id="1_csx0q"]
 [ext_resource type="Script" path="res://scripts/m_char.gd" id="1_hsjyk"]
@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://d1406eejpqw70" path="res://assets/m_char/hurt5.png" id="6_0s43v"]
 [ext_resource type="Texture2D" uid="uid://cjoped14mxcbk" path="res://assets/m_char/hurt6.png" id="7_r16ay"]
 [ext_resource type="Script" path="res://scripts/debug_gui.gd" id="11_0gqgv"]
-[ext_resource type="PackedScene" uid="uid://ckc1sg17rg3xr" path="res://addons/terminal/terminal_menu.tscn" id="12_vesn3"]
+[ext_resource type="AudioStream" uid="uid://bdsne6svu8p7b" path="res://assets/sounds/death.wav" id="12_qd0ow"]
+[ext_resource type="Script" path="res://scripts/walk.gd" id="13_kbmx2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jpmtq"]
 atlas = ExtResource("2_awkmh")
@@ -580,10 +581,19 @@ layout_mode = 2
 [node name="time" type="Timer" parent="debug gui"]
 autostart = true
 
-[node name="TerminalMenu" parent="debug gui" instance=ExtResource("12_vesn3")]
-visible = false
-startOpen = true
+[node name="sounds" type="Node" parent="."]
+
+[node name="death" type="AudioStreamPlayer2D" parent="sounds"]
+scale = Vector2(0.75, 0.75)
+stream = ExtResource("12_qd0ow")
+volume_db = -10.0
+max_distance = 1e+14
+
+[node name="walk" type="AudioStreamPlayer2D" parent="sounds"]
+max_distance = 10000.0
+script = ExtResource("13_kbmx2")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="debug gui/time" to="debug gui" method="_on_time_timeout"]
+[connection signal="finished" from="sounds/walk" to="sounds/walk" method="_on_finished"]

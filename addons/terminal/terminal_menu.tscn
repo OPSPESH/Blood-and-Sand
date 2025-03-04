@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckc1sg17rg3xr"]
+
+[ext_resource type="Script" path="res://addons/terminal/terminal_menu.gd" id="1_x7sc3"]
+
+[sub_resource type="GDScript" id="GDScript_6h83f"]
+script/source = "extends TextEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="TerminalMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7sc3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8
+offset_bottom = -382.0
+
+[node name="Label" type="TextEdit" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "	"
+editable = false
+scroll_smooth = true
+scroll_fit_content_height = true
+draw_control_chars = true
+draw_tabs = true
+draw_spaces = true
+
+[node name="TerminalInputContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.8
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -382.0
+offset_bottom = -429.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TerminalInput" type="TextEdit" parent="TerminalInputContainer"]
+layout_mode = 2
+placeholder_text = "Command..."
+wrap_mode = 1
+caret_blink = true
+script = SubResource("GDScript_6h83f")
+
+[connection signal="text_changed" from="TerminalInputContainer/TerminalInput" to="." method="_on_text_edit_text_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cu2pe5fp8kd72"]
+[gd_scene load_steps=61 format=3 uid="uid://cu2pe5fp8kd72"]
 
 [ext_resource type="Script" path="res://scripts/goblin_torch.gd" id="1_s2fw3"]
 [ext_resource type="Texture2D" uid="uid://dhk2yuquu462c" path="res://assets/goblin/Torch_Red.png" id="1_v5orh"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bn5vbdq2hngum" path="res://assets/goblin/hurt5.png" id="6_cwqen"]
 [ext_resource type="Texture2D" uid="uid://b6yc84xrkd4bu" path="res://assets/goblin/hurt6.png" id="7_ldsst"]
 [ext_resource type="AudioStream" uid="uid://bdsne6svu8p7b" path="res://assets/sounds/death.wav" id="11_p3w6s"]
-[ext_resource type="Script" path="res://scripts/walk.gd" id="12_r1wev"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m32mn"]
 atlas = ExtResource("2_0tqrw")
@@ -456,12 +455,7 @@ stream = ExtResource("11_p3w6s")
 volume_db = -10.0
 max_distance = 1e+14
 
-[node name="walk" type="AudioStreamPlayer2D" parent="sounds"]
-max_distance = 5000.0
-script = ExtResource("12_r1wev")
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="timers/knockback" to="." method="_on_knockback_timeout"]
 [connection signal="timeout" from="timers/makepath" to="." method="_on_makepath_timeout"]
-[connection signal="finished" from="sounds/walk" to="sounds/walk" method="_on_finished"]

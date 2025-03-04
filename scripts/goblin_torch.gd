@@ -44,7 +44,7 @@ func attack():
 func set_damage():
 	var damage: int
 	if attacking:
-		damage = 10
+		damage = 1
 		Global.goblin_damage = damage
 		attack_anim()
 		await get_tree().create_timer(0.5).timeout
